@@ -1,1 +1,1 @@
-EOSPDS-App
+ionic serve -l
