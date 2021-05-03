@@ -1,0 +1,7 @@
+{
+  "name": "eospds-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
