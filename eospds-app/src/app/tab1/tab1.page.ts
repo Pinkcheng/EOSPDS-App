@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
+
+import { StorageService } from '../services/storage.service';
+
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router) { }
+  token: string = '';
+  constructor(private authService: AuthService, private router: Router, public storage: StorageService) { }
 
   async ngOnInit(): Promise<void> {
-    const token = await Storage.get({ key: 'access-token' })
-    console.log(token)
   }
 
   async logout() {

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
+import { StorageService } from 'src/app/services/storage.service';
+
 
 @Component({
   selector: 'app-login',
@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
     public toastController: ToastController,
     public auth: AuthService,
     private router: Router,
+    public storage: StorageService
   ) { }
 
   async presentToast(message) {
@@ -32,15 +33,15 @@ export class LoginPage implements OnInit {
   }
 
   async ngOnInit() {
-    const token = await Storage.get({ key: 'access-token' })
-    console.log(token)
   }
+
   async login() {
     let body = new URLSearchParams();
     body.set('account', this.account);
     body.set('password', this.password);
     this.auth.login(body).subscribe(
       async (res) => {
+        console.log(res);
         this.router.navigateByUrl('/tabs', { replaceUrl: true });
 
       }
