@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { AuthService } from './services/auth.service';
 import { StorageService } from './services/storage.service';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { StorageService } from './services/storage.service';
     AppRoutingModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthService, StorageService],
   bootstrap: [AppComponent],
