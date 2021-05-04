@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Response } from '../../models'
 
 
 @Component({
@@ -40,11 +41,12 @@ export class LoginPage implements OnInit {
     body.set('account', this.account);
     body.set('password', this.password);
     this.auth.login(body).subscribe(
-      async (res) => {
-        console.log(res);
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
-
-      }
+      async (res: Response) => {
+        this.presentToast(res.message)
+        if (res.status == 1) {
+          this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        }
+      },
     )
   }
 }

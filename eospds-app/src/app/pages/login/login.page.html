@@ -1,11 +1,24 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>login</ion-title>
+    <ion-title>傳送員管理系統</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-input [(ngModel)]="account"></ion-input>
-  <ion-input [(ngModel)]="password"></ion-input>
-  <ion-button (click)=login()>登入</ion-button>
+<ion-content color="tertiary">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-center">
+          <img class="logo" src="/assets/icon/logo.png">
+          <ion-item>
+            <ion-label position="floating">帳號</ion-label>
+            <ion-input [(ngModel)]="account" placeholder="請輸入您的帳號"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">密碼</ion-label>
+            <ion-input [(ngModel)]="password" placeholder="請輸入您的帳號"></ion-input>
+          </ion-item>
+        <ion-button class="button-login" (click)=login()>登入</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
