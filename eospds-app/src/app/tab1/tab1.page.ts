@@ -11,14 +11,10 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  token: string = '';
   constructor(private authService: AuthService, private router: Router, public storage: StorageService) { }
-
-  async ngOnInit(): Promise<void> {
+  missionList = [1, 2, 3, 4, 5, 6]
+  ngOnInit() {
   }
 
-  async logout() {
-    await this.authService.logout();
-    this.router.navigateByUrl('/', { replaceUrl: true });
-  }
+
 }
