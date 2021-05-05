@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
   async presentToast(message) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 10000
+      duration: 1000
     });
     toast.present();
   }

@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="mission-card" *ngFor="let index of missionList">
-    <app-mission-uninit-card></app-mission-uninit-card>
+  <div class="mission-card" *ngFor="let item of missionList; let i=index">
+    <app-mission-uninit-card [missionData]="missionList[i]"></app-mission-uninit-card>
   </div>
 </ion-content>

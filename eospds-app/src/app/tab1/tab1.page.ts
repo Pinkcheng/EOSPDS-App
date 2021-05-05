@@ -12,8 +12,52 @@ import { StorageService } from '../services/storage.service';
 })
 export class Tab1Page implements OnInit {
   constructor(private authService: AuthService, private router: Router, public storage: StorageService) { }
-  missionList = [1, 2, 3, 4, 5, 6]
+  missionList = [
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    },
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    },
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    },
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    },
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    },
+    {
+      "id": "M100100000000202103310001",
+      "type": "回病房",
+      "dispatchTime": "2021-04-30T07:20:04.000Z",
+      "startDepartment": "新醫療大樓-B1-Ｘ光室",
+      "endDepartment": "新醫療大樓-5F-5B病房"
+    }
+  ]
   ngOnInit() {
+
   }
 
 

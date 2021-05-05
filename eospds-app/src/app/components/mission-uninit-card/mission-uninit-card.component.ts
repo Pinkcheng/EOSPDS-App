@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mission-uninit-card',
@@ -9,6 +9,11 @@ export class MissionUninitCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  @Input()
+  missionData;
+
+  ngOnInit() {
+    console.log(this.missionData)
+  }
 
 }
