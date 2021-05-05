@@ -1,7 +1,7 @@
 <ion-card>
   <ion-item color="secondary">
     <ion-card-header>
-      <ion-card-title>{{missionData.type}}</ion-card-title>
+      <ion-card-title class="card-title">{{missionData.type}}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="card-content">
       <ion-label>
@@ -19,7 +19,6 @@
     </ion-card-content>
   </ion-item>
   <ion-item color="tertiary">
-
-    <ion-button class="scan-button">掃描</ion-button>
+    <app-scan-qrcode-button class="scan-button" (barcodeTextEvent)="getBarcodeId($event)"></app-scan-qrcode-button>
   </ion-item>
 </ion-card>

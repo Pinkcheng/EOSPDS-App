@@ -9,7 +9,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content  class="has-header">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="mission-card" *ngFor="let item of missionList; let i=index">
     <app-mission-uninit-card [missionData]="missionList[i]"></app-mission-uninit-card>
   </div>

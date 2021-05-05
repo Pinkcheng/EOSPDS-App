@@ -60,5 +60,10 @@ export class Tab1Page implements OnInit {
 
   }
 
-
+  doRefresh(event) {
+    //更新任務資料
+    setTimeout(() => {
+      event.target.complete();
+    }, 2000);
+  }
 }
