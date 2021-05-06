@@ -1,5 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <app-work-status-button></app-work-status-button>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       未開始
     </ion-title>
@@ -9,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="has-header">
+<ion-content class="has-header">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
     </ion-refresher-content>

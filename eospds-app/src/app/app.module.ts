@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 import { StorageService } from './services/storage.service';
 import { ComponentsModule } from './components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { AlterService } from './services/alter.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,14 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     HttpClientModule,
     ComponentsModule
   ],
-  providers: [BarcodeScanner, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, AuthService, StorageService],
-  bootstrap: [AppComponent],
+  providers: [
+    BarcodeScanner,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AuthService,
+    StorageService,
+    AlterService
+  ],
+  bootstrap: [AppComponent
+  ],
 })
 export class AppModule { }

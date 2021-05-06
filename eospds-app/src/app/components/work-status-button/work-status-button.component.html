@@ -1,0 +1,6 @@
+<ion-icon *ngIf="!(isWorking$| async)" name="radio-button-on" color="danger" class="workstatus-button"
+    (click)="punchIn()">
+</ion-icon>
+<ion-icon *ngIf="(isWorking$| async)" name="radio-button-on" color="success" class="workstatus-button"
+    (click)="punchOut()">
+</ion-icon>

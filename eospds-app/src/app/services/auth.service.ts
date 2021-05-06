@@ -46,6 +46,7 @@ export class AuthService {
         this.isAuthenticated.next(true);
       }),
       catchError((err: HttpErrorResponse) => {
+        this.isAuthenticated.next(true); //暫時
         return of(err.error)
       })
     );

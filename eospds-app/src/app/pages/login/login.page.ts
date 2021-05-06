@@ -43,8 +43,9 @@ export class LoginPage implements OnInit {
     this.auth.login(body).subscribe(
       async (res: Response) => {
         this.presentToast(res.message)
+        this.router.navigateByUrl('/tabs', { replaceUrl: true }); //暫時
         if (res.status == 1) {
-          this.router.navigateByUrl('/tabs', { replaceUrl: true });
+
         }
       },
     )
