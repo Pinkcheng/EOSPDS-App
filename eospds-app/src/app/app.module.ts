@@ -11,6 +11,7 @@ import { StorageService } from './services/storage.service';
 import { ComponentsModule } from './components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AlterService } from './services/alter.service';
+import {NgxQRCodeModule} from 'ngx-qrcode2'
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { AlterService } from './services/alter.service';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxQRCodeModule
   ],
   providers: [
     BarcodeScanner,

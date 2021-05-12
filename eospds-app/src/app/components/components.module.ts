@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ScanQrcodeButtonComponent } from './scan-qrcode-button/scan-qrcode-button.component';
 import { FormsModule } from '@angular/forms';
 import { WorkStatusButtonComponent } from './work-status-button/work-status-button.component';
+import {NgxQRCodeModule} from 'ngx-qrcode2'
 
 
 
@@ -21,7 +22,8 @@ import { WorkStatusButtonComponent } from './work-status-button/work-status-butt
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxQRCodeModule
   ],
   exports: [
     MissionUninitCardComponent,
