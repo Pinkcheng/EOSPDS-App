@@ -19,7 +19,7 @@
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
-  <div class="mission-card" *ngFor="let item of missionList; let i=index">
-    <app-mission-uninit-card [missionData]="missionList[i]"></app-mission-uninit-card>
+  <div class="mission-card" *ngFor="let item of missionIdList; let i=index">
+    <app-mission-uninit-card [missionId]="item"></app-mission-uninit-card>
   </div>
 </ion-content>

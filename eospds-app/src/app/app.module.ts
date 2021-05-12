@@ -4,14 +4,16 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { AuthService } from './services/auth.service';
+import { AuthService, TokenAuthHttpInterceptor } from './services/auth.service';
 import { StorageService } from './services/storage.service';
 import { ComponentsModule } from './components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AlterService } from './services/alter.service';
 import {NgxQRCodeModule} from 'ngx-qrcode2'
+import { ApiService } from './services/api.service';
+import { ShareModule } from './share/share.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,8 @@ import {NgxQRCodeModule} from 'ngx-qrcode2'
     IonicStorageModule.forRoot(),
     HttpClientModule,
     ComponentsModule,
+    ShareModule
+    ComponentsModule,
     NgxQRCodeModule
   ],
   providers: [
@@ -30,7 +34,13 @@ import {NgxQRCodeModule} from 'ngx-qrcode2'
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthService,
     StorageService,
-    AlterService
+    AlterService,
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenAuthHttpInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent
   ],

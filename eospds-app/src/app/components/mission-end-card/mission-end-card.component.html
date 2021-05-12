@@ -1,17 +1,24 @@
 <ion-card>
   <ion-item color="secondary">
     <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title3</ion-card-title>
+      <ion-card-title class="card-title">{{missionLabel}}</ion-card-title>
     </ion-card-header>
-
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    <ion-card-content class="card-content">
+      <ion-label>
+        <span class="card-label">完成時間</span>
+        {{endTime| date: 'yyyy/MM/dd hh:mm:ss'}}
+      </ion-label>
+      <ion-label>
+        <span class="card-label">起始單位</span>
+        {{startDepartment}}
+      </ion-label>
+      <ion-label>
+        <span class="card-label">送往單位</span>
+        {{endDepartment}}
+      </ion-label>
     </ion-card-content>
   </ion-item>
   <ion-item color="tertiary">
-    <ion-label>Card Link Item 2</ion-label>
-    <ion-button>掃描</ion-button>
+    <!--<app-scan-qrcode-button class="scan-button" (barcodeTextEvent)="getBarcodeId($event)"></app-scan-qrcode-button>-->
   </ion-item>
 </ion-card>

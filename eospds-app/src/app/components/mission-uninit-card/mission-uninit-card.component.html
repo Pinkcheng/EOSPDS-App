@@ -1,20 +1,20 @@
 <ion-card>
   <ion-item color="secondary">
     <ion-card-header>
-      <ion-card-title class="card-title">{{missionData.type}}</ion-card-title>
+      <ion-card-title class="card-title">{{missionLabel}}</ion-card-title>
     </ion-card-header>
     <ion-card-content class="card-content">
       <ion-label>
         <span class="card-label">派遣時間</span>
-        {{missionData.dispatchTime | date:'medium'}}
+        {{dispatchTime | date: 'yyyy/MM/dd hh:mm:ss'}}
       </ion-label>
       <ion-label>
         <span class="card-label">起始單位</span>
-        {{missionData.startDepartment}}
+        {{startDepartment}}
       </ion-label>
       <ion-label>
         <span class="card-label">送往單位</span>
-        {{missionData.endDepartment}}
+        {{endDepartment}}
       </ion-label>
     </ion-card-content>
   </ion-item>

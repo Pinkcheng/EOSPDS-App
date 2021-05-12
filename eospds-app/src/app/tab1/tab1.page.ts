@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-
+import { Response } from '../models/response'
 import { StorageService } from '../services/storage.service';
+import { HttpParams } from '@angular/common/http';
+import { MissionList } from '../models';
 
 
 @Component({
@@ -11,57 +14,35 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  constructor(private authService: AuthService, private router: Router, public storage: StorageService) { }
-  missionList = [
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    },
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    },
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    },
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    },
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    },
-    {
-      "id": "M100100000000202103310001",
-      "type": "回病房",
-      "dispatchTime": "2021-04-30T07:20:04.000Z",
-      "startDepartment": "新醫療大樓-B1-Ｘ光室",
-      "endDepartment": "新醫療大樓-5F-5B病房"
-    }
-  ]
-  ngOnInit() {
+  userId: string = '';
+  constructor(private router: Router, public storage: StorageService, public api: ApiService) {
 
+  }
+
+  missionIdList: string[] = []
+  ngOnInit() {
+    this.storage.getUserId().subscribe(id => {
+      this.userId = id;
+      let params = new HttpParams().set('status', '2').set('porterId', this.userId);
+      this.api.getMissionListParams(params).subscribe(
+        (res: Response) => {
+          this.missionIdList = res.data.map(mission => mission.id);
+          console.log(this.missionIdList)
+        }, (err) => console.log(err.error))
+    })
   }
 
   doRefresh(event) {
     //更新任務資料
+    this.storage.getUserId().subscribe(id => {
+      this.userId = id;
+      let params = new HttpParams().set('status', '2').set('porterId', this.userId);
+      this.api.getMissionListParams(params).subscribe(
+        (res: Response) => {
+          this.missionIdList = res.data.map(mission => mission.id);
+          console.log(this.missionIdList)
+        }, (err) => console.log(err.error))
+    })
     setTimeout(() => {
       event.target.complete();
     }, 2000);

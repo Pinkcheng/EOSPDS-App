@@ -1,14 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <app-work-status-button></app-work-status-button>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       已完成
     </ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button contentId=""></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="has-header">
-  <app-mission-end-card></app-mission-end-card>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="mission-card" *ngFor="let item of missionIdList; let i=index">
+    <app-mission-end-card [missionId]="item"></app-mission-end-card>
+  </div>
 </ion-content>
