@@ -52,8 +52,8 @@ export class MissionStartCardComponent implements OnInit {
         //api action $event.split('///')[1]為編號
         this.storage.getUserId().subscribe(id => {
           let body = new URLSearchParams();
-          body.set('dispatch', '2');
-          body.set('porter', id);
+          body.set('action', '2');
+          body.set('handover', id);
           this.api.missionAction(this.missionId, body).subscribe(res => this.presentAlertMultipleButtons($event.split('///')[2]));
         })
       } else {

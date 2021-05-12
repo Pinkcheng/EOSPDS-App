@@ -54,8 +54,8 @@ export class MissionUninitCardComponent implements OnInit {
         //api action $event.split('///')[1]為編號
         this.storage.getUserId().subscribe(id => {
           let body = new URLSearchParams();
-          body.set('dispatch', '1');
-          body.set('porter', id);
+          body.set('action', '1');
+          body.set('handover', id);
           this.api.missionAction(this.missionId, body).subscribe(res => this.presentAlertMultipleButtons($event.split('///')[2]));
         })
       } else {

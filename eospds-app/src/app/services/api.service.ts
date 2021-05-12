@@ -38,6 +38,6 @@ export class ApiService {
     return this.http.get<Response>(this.apiURL + this.apiMission + '/' + missionId, this.app.apiOptions)
   }
   missionAction(missionId: string, body: URLSearchParams) {
-    return this.http.post<Response>(this.apiURL + this.apiMission + '/' + missionId, body.toString(), this.app.apiOptions)
+    return this.http.post<Response>(this.apiURL + this.apiMission + '/' + missionId + '/action', body.toString(), this.app.apiOptions)
   }
 }
