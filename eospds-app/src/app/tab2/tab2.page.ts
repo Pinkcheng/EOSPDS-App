@@ -22,19 +22,18 @@ export class Tab2Page {
 
   missionIdList: string[] = []
   ngOnInit() {
-    this.storage.getUserId().subscribe(id => {
-      this.userId = id;
-      let params = new HttpParams().set('status', '3').set('porterId', this.userId);
-      this.api.getMissionListParams(params).subscribe(
-        (res: Response) => {
-          this.missionIdList = res.data.map(mission => mission.id);
-          console.log(this.missionIdList)
-        }, (err) => console.log(err.error))
-    })
+    this.getMissionList();
   }
 
   doRefresh(event) {
     //更新任務資料
+    setTimeout(() => {
+      event.target.complete();
+      this.getMissionList();
+    }, 1000);
+  }
+
+  getMissionList() {
     this.storage.getUserId().subscribe(id => {
       this.userId = id;
       let params = new HttpParams().set('status', '3').set('porterId', this.userId);
@@ -42,10 +41,7 @@ export class Tab2Page {
         (res: Response) => {
           this.missionIdList = res.data.map(mission => mission.id);
           console.log(this.missionIdList)
-        }, (err) => console.log(err.error))
+        })
     })
-    setTimeout(() => {
-      event.target.complete();
-    }, 2000);
   }
 }

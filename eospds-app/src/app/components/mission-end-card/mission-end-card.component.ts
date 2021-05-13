@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -9,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MissionEndCardComponent implements OnInit {
 
-  constructor(public alertController: AlertController, public api: ApiService) { }
+  constructor(public api: ApiService) { }
 
   @Input()
   missionId: string;
@@ -24,7 +23,6 @@ export class MissionEndCardComponent implements OnInit {
     this.api.getMissionData(this.missionId).subscribe(
       res => {
         this.missionData = res.data;
-        console.log(res.data)
         this.missionProcess = this.missionData.process;
         this.missionLabel = this.missionData.label.name;
         this.endTime = this.missionData.process[3].time;

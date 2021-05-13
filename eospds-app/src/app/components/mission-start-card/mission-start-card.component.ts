@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -13,7 +12,6 @@ import { StorageService } from 'src/app/services/storage.service';
 export class MissionStartCardComponent implements OnInit {
 
   constructor(
-    public alertController: AlertController,
     public api: ApiService,
     public storage: StorageService,
     public err: ErrorService) { }
@@ -26,20 +24,11 @@ export class MissionStartCardComponent implements OnInit {
   startDepartment: string = "";
   endDepartment: string = "";
   missionProcess: any;
-  async presentAlertMultipleButtons(text: string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: '交接',
-      message: text,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
+
   ngOnInit() {
     this.api.getMissionData(this.missionId).subscribe(
       res => {
         this.missionData = res.data;
-        console.log(res.data)
         this.missionProcess = this.missionData.process;
         this.missionLabel = this.missionData.label.name;
         this.startTime = this.missionData.process[2].time;
@@ -59,10 +48,25 @@ export class MissionStartCardComponent implements OnInit {
           let body = new URLSearchParams();
           body.set('action', '2');
           body.set('handover', id);
-          this.api.missionAction(this.missionId, body).subscribe(res => this.presentAlertMultipleButtons($event.split('///')[2]));
+          this.err.presentAlert('請確認是否完成任務', 'QRcode: ' + $event.split('///')[2], [
+            {
+              text: '取消',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                console.log('取消');
+              }
+            }, {
+              text: '確定',
+              handler: () => {
+                this.api.missionAction(this.missionId, body).subscribe(res => this.err.presentToast("完成任務"));
+                console.log('成功交接');
+              }
+            }
+          ])
         })
       } else {
-        this.presentAlertMultipleButtons('非本系統QRcode');
+        this.err.presentToast("非本系統QRcode");
       }
     }
   }

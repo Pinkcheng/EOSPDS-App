@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from "@ionic-native/barcode-scanner/ngx";
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-scan-qrcode-button',

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { MissionList } from 'src/app/models';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
+import { ErrorService } from 'src/app/services/error.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { AppConfig } from 'src/app/share';
 
@@ -13,7 +13,10 @@ import { AppConfig } from 'src/app/share';
 })
 export class MissionUninitCardComponent implements OnInit {
 
-  constructor(public alertController: AlertController, public api: ApiService, public storage: StorageService) { }
+  constructor(
+    public api: ApiService,
+    public storage: StorageService,
+    public err: ErrorService) { }
 
   @Input()
   missionId: string;
@@ -23,20 +26,11 @@ export class MissionUninitCardComponent implements OnInit {
   startDepartment: string = "";
   endDepartment: string = "";
   missionProcess: any;
-  async presentAlertMultipleButtons(text: string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: '交接',
-      message: text,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
+
   ngOnInit() {
     this.api.getMissionData(this.missionId).subscribe(
       res => {
         this.missionData = res.data;
-        console.log(res.data)
         this.missionProcess = this.missionData.process;
         this.missionLabel = this.missionData.label.name;
         this.dispatchTime = this.missionData.process[1].time;
@@ -48,18 +42,33 @@ export class MissionUninitCardComponent implements OnInit {
   }
 
   getBarcodeId($event: any) {
-    if ($event != null) {
-      let systemName = $event.split('///')[0];
+    let systemName = $event.split('///')[0];
+    if (systemName != "") {
       if (systemName == 'EOSPDS') {
         //api action $event.split('///')[1]為編號
         this.storage.getUserId().subscribe(id => {
           let body = new URLSearchParams();
           body.set('action', '1');
           body.set('handover', id);
-          this.api.missionAction(this.missionId, body).subscribe(res => this.presentAlertMultipleButtons($event.split('///')[2]));
+          this.err.presentAlert('請確認是否開始任務', 'QRcode: ' + $event.split('///')[2], [
+            {
+              text: '取消',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                console.log('取消');
+              }
+            }, {
+              text: '確定',
+              handler: () => {
+                this.api.missionAction(this.missionId, body).subscribe(res => this.err.presentToast("開始任務"));
+                console.log('開始任務');
+              }
+            }
+          ])
         })
       } else {
-        this.presentAlertMultipleButtons('非本系統QRcode');
+        this.err.presentToast("非本系統QRcode");
       }
     }
   }
