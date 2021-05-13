@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { AlterService } from 'src/app/services/alter.service';
+import { Observable } from 'rxjs';
+import { ErrorService } from 'src/app/services/error.service';
+import { PunchService } from 'src/app/services/punch.service';
 
 @Component({
   selector: 'app-work-status-button',
@@ -8,90 +9,56 @@ import { AlterService } from 'src/app/services/alter.service';
   styleUrls: ['./work-status-button.component.scss'],
 })
 export class WorkStatusButtonComponent implements OnInit {
-  isWorking$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
-  constructor(public alter: AlterService) { }
+  isWorking$ = new Observable<boolean>();
+
+  constructor(public err: ErrorService, public punch: PunchService) { }
 
   ngOnInit() {
-    if (this.porterData.status.id == 1) {
-      this.isWorking$.next(true)
-    } else {
-      this.isWorking$.next(false)
-    }
-
+    this.isWorking$ = this.punch.getWorkingStatus();
   }
 
   punchIn() {
-    this.alter.presentAlertMultipleButtons(this.getPunchTime() + ' 打卡上班', '', [
+    this.err.presentAlert(this.getPunchTime() + ' 打卡上班', '', [
       {
-        text: 'Cancel',
+        text: '取消',
         role: 'cancel',
         cssClass: 'secondary',
         handler: () => {
-          console.log('Confirm Cancel');
+          console.log('取消');
         }
       }, {
-        text: 'Ok',
+        text: '確定',
         handler: () => {
-          this.isWorking$.next(true)
-          console.log('Confirm Ok');
+          this.punch.setWorkingStatus(true)
+          console.log('上班了哭哭');
         }
       }
     ])
   }
   punchOut() {
-    this.alter.presentAlertMultipleButtons(this.getPunchTime() + ' 打卡下班', '請確認是否完成所有任務', [
+    this.err.presentAlert(this.getPunchTime() + ' 打卡下班', '請確認是否完成所有任務', [
       {
-        text: 'Cancel',
+        text: '取消',
         role: 'cancel',
         cssClass: 'secondary',
         handler: () => {
-          console.log('Confirm Cancel');
+          console.log('取消');
         }
       }, {
-        text: 'Ok',
+        text: '確定',
         handler: () => {
-          this.isWorking$.next(false)
-          console.log('Confirm Ok');
+          //需檢查目前手上任務為0
+          this.punch.setWorkingStatus(false)
+          console.log('下班啦好爽');
         }
       }
     ])
+  }
 
-  }
-  porterData = {
-    "id": "P10000001",
-    "name": "李冠億",
-    "tag": 123,
-    "birthday": "1987/08/07",
-    "department": {
-      "id": "D1231",
-      "building": {
-        "id": "B1234",
-        "name": "新醫療大樓"
-      },
-      "floor": "B1",
-      "name": "傳送中心"
-    },
-    "gender": {
-      "id": 1,
-      "name": "男"
-    },
-    "type": {
-      "id": 1,
-      "name": "全院"
-    },
-    "status": {
-      "id": 1,
-      "name": "上班中"
-    },
-    "mission": 1,
-    "position": "新醫療大樓-5F-5B病房",
-    "time": "2021/03/30 10:20"
-  }
   getPunchTime(): string {
     let timeNow = new Date(new Date().getTime() + 1000 * 60 * 60 * 2).toString();
     let punchTime = timeNow.split(' ')[4];
     return punchTime
   }
-
 }

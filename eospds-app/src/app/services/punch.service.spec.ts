@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AlterService } from './alter.service';
+import { PunchService } from './punch.service';
 
-describe('AlterService', () => {
-  let service: AlterService;
+describe('PunchService', () => {
+  let service: PunchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AlterService);
+    service = TestBed.inject(PunchService);
   });
 
   it('should be created', () => {

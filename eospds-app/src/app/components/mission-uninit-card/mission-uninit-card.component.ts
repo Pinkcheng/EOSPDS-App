@@ -44,7 +44,7 @@ export class MissionUninitCardComponent implements OnInit {
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +
           this.missionData.endDepartment.floor + '-' + this.missionData.endDepartment.name;
-      }, (err) => console.log(err.error));
+      });
   }
 
   getBarcodeId($event: any) {

@@ -19,15 +19,7 @@ export class MissionEndCardComponent implements OnInit {
   startDepartment: string = "";
   endDepartment: string = "";
   missionProcess: any;
-  async presentAlertMultipleButtons(text: string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: '交接',
-      message: text,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
+
   ngOnInit() {
     this.api.getMissionData(this.missionId).subscribe(
       res => {
@@ -40,6 +32,6 @@ export class MissionEndCardComponent implements OnInit {
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +
           this.missionData.endDepartment.floor + '-' + this.missionData.endDepartment.name;
-      }, (err) => console.log(err.error));
+      });
   }
 }

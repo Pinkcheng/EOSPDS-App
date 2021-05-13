@@ -1,9 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { ErrorService } from 'src/app/services/error.service';
 import { Response } from '../../models'
 
 
@@ -16,22 +14,13 @@ export class LoginPage implements OnInit {
 
   account: string = "0975879856";
   password: string = "123";
-  apiOptions = { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') };
+
   constructor(
-    public http: HttpClient,
-    public toastController: ToastController,
+    public err: ErrorService,
     public auth: AuthService,
     private router: Router,
-    public storage: StorageService
   ) { }
 
-  async presentToast(message) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 1000
-    });
-    toast.present();
-  }
 
   async ngOnInit() {
   }
@@ -42,10 +31,9 @@ export class LoginPage implements OnInit {
     body.set('password', this.password);
     this.auth.login(body).subscribe(
       async (res: Response) => {
-        this.presentToast(res.message)
-        this.router.navigateByUrl('/tabs', { replaceUrl: true }); //暫時
+        this.err.presentToast(res.message)
         if (res.status == 1) {
-
+          this.router.navigateByUrl('/tabs', { replaceUrl: true });
         }
       },
     )

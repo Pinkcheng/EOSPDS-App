@@ -10,10 +10,10 @@ import { AuthService, TokenAuthHttpInterceptor } from './services/auth.service';
 import { StorageService } from './services/storage.service';
 import { ComponentsModule } from './components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { AlterService } from './services/alter.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ApiService } from './services/api.service';
 import { ShareModule } from './share/share.module';
+import { PunchService } from './services/punch.service';
 
 
 @NgModule({
@@ -37,8 +37,8 @@ import { ShareModule } from './share/share.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthService,
     StorageService,
-    AlterService,
     ApiService,
+    PunchService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenAuthHttpInterceptor,
