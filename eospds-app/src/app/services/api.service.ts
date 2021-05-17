@@ -41,4 +41,8 @@ export class ApiService {
   getPorterData(porterId: string): Observable<Response> {
     return this.http.get<Response>(this.apiURL + this.apiPorter + '/' + porterId, this.app.apiOptions).pipe(catchError(this.err.handleError))
   }
+  //傳送員打卡上下班
+  porterPunch(porterId: string, body: URLSearchParams): Observable<Response> {
+    return this.http.post<Response>(this.apiURL + this.apiPorter + '/' + porterId + '/punch', body.toString(), this.app.apiOptions).pipe(catchError(this.err.handleError))
+  }
 }

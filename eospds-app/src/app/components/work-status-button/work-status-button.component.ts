@@ -31,7 +31,6 @@ export class WorkStatusButtonComponent implements OnInit {
         text: '確定',
         handler: () => {
           this.punch.setWorkingStatus(true)
-          console.log('上班了哭哭');
         }
       }
     ])
@@ -50,7 +49,6 @@ export class WorkStatusButtonComponent implements OnInit {
         handler: () => {
           //需檢查目前手上任務為0
           this.punch.setWorkingStatus(false)
-          console.log('下班啦好爽');
         }
       }
     ])
