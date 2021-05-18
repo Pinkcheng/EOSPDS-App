@@ -19,7 +19,7 @@ export class MissionStartCardComponent implements OnInit {
   @Input()
   missionId: string;
   missionData: MissionData;
-  missionLabel: string = "";
+  missionType: string = "";
   startTime = new Date;
   startDepartment: string = "";
   endDepartment: string = "";
@@ -30,7 +30,7 @@ export class MissionStartCardComponent implements OnInit {
       res => {
         this.missionData = res.data;
         this.missionProcess = this.missionData.process;
-        this.missionLabel = this.missionData.label.name;
+        this.missionType = this.missionData.label.type.name;
         this.startTime = this.missionData.process[2].time;
         this.startDepartment = this.missionData.startDepartment.building.name + '-' +
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
