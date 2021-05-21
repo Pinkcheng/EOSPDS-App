@@ -14,6 +14,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ApiService } from './services/api.service';
 import { ShareModule } from './share/share.module';
 import { PunchService } from './services/punch.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+import { NotifyService } from './services/notify.service';
 
 
 @NgModule({
@@ -34,11 +36,13 @@ import { PunchService } from './services/punch.service';
   ],
   providers: [
     BarcodeScanner,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthService,
     StorageService,
     ApiService,
     PunchService,
+    NotifyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenAuthHttpInterceptor,

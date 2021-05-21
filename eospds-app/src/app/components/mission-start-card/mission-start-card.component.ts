@@ -31,7 +31,7 @@ export class MissionStartCardComponent implements OnInit {
         this.missionData = res.data;
         this.missionProcess = this.missionData.process;
         this.missionType = this.missionData.label.type.name;
-        this.startTime = this.missionData.process[2].time;
+        this.startTime = this.missionData.process.in_process.time;
         this.startDepartment = this.missionData.startDepartment.building.name + '-' +
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +
@@ -47,7 +47,8 @@ export class MissionStartCardComponent implements OnInit {
         this.storage.getUserId().subscribe(id => {
           let body = new URLSearchParams();
           body.set('action', '2');
-          body.set('handover', id);
+          body.set('porter', id);
+          body.set('handover', $event.split('///')[1]);
           this.err.presentAlert('請確認是否完成任務', 'QRcode: ' + $event.split('///')[2], [
             {
               text: '取消',

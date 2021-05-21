@@ -6,6 +6,7 @@ import { Response } from '../models/response'
 import { StorageService } from '../services/storage.service';
 import { HttpParams } from '@angular/common/http';
 import { MissionList } from '../models';
+import { NotifyService } from '../services/notify.service';
 
 
 @Component({
@@ -15,13 +16,14 @@ import { MissionList } from '../models';
 })
 export class Tab1Page implements OnInit {
   userId: string = '';
-  constructor(private router: Router, public storage: StorageService, public api: ApiService) {
+  constructor(private router: Router, public storage: StorageService, public api: ApiService, public notify: NotifyService) {
 
   }
 
   missionIdList: string[] = []
   ngOnInit() {
     this.getMissionList();
+    this.notify.checkMissionCount(); //啟動本地推播
   }
 
   doRefresh(event) {

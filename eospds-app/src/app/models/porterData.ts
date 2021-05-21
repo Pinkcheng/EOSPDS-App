@@ -10,5 +10,5 @@ export interface PorterData {
     "gender": number,
     "type": PorterType,
     "status": number,
-    "count": number
+    "mission": number
 }

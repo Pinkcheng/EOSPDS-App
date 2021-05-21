@@ -33,7 +33,7 @@ export class MissionUninitCardComponent implements OnInit {
         this.missionData = res.data;
         this.missionProcess = this.missionData.process;
         this.missionType = this.missionData.label.type.name;
-        this.dispatchTime = this.missionData.process[1].time;
+        this.dispatchTime = this.missionData.process.start.time;
         this.startDepartment = this.missionData.startDepartment.building.name + '-' +
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +
@@ -49,7 +49,8 @@ export class MissionUninitCardComponent implements OnInit {
         this.storage.getUserId().subscribe(id => {
           let body = new URLSearchParams();
           body.set('action', '1');
-          body.set('handover', id);
+          body.set('porter', id);
+          body.set('handover', $event.split('///')[1]);
           this.err.presentAlert('請確認是否開始任務', 'QRcode: ' + $event.split('///')[2], [
             {
               text: '取消',

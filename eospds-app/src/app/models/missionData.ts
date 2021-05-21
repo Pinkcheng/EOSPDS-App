@@ -21,5 +21,5 @@ export interface MissionData {
         "gender": number,
         "status": number
     },
-    "process": missionProcess[]
+    "process": missionProcess
 }

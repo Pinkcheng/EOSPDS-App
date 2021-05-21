@@ -25,7 +25,7 @@ export class MissionEndCardComponent implements OnInit {
         this.missionData = res.data;
         this.missionProcess = this.missionData.process;
         this.missionType = this.missionData.label.type.name;
-        this.endTime = this.missionData.process[3].time;
+        this.endTime = this.missionData.process.finish.time;
         this.startDepartment = this.missionData.startDepartment.building.name + '-' +
           this.missionData.startDepartment.floor + '-' + this.missionData.startDepartment.name;
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +

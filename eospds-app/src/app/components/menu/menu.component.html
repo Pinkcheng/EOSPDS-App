@@ -6,10 +6,10 @@
 <ion-content class="full-height">
   <ion-list class="full-height">
     <ion-menu-toggle auto-hide="false">
-        <ion-item href='#'>個人資料</ion-item>
-        <ion-item href='#'>修改密碼</ion-item>
-        <ion-item href='#'>打卡</ion-item>
-        <ion-item href='#' (click)="logout()" color="danger">登出</ion-item>
+      <ion-item>個人資料</ion-item>
+      <ion-item (click)="simpleNotif()">修改密碼</ion-item>
+      <ion-item>打卡紀錄</ion-item>
+      <ion-item href='#' (click)="logout()" color="danger">登出</ion-item>
     </ion-menu-toggle>
   </ion-list>
 </ion-content>
