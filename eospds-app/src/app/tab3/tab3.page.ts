@@ -14,12 +14,16 @@ import { HttpParams } from '@angular/common/http';
 export class Tab3Page {
 
   userId: string = '';
+  userName: string = '';
   constructor(private router: Router, public storage: StorageService, public api: ApiService) {
 
   }
 
   missionIdList: string[] = []
   ngOnInit() {
+    this.storage.getUserName().subscribe(name => {
+      this.userName = name;
+    })
     this.getMissionList();
   }
 

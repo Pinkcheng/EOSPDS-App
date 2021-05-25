@@ -16,12 +16,16 @@ import { MissionList } from '../models';
 export class Tab2Page {
 
   userId: string = '';
+  userName: string = '';
   constructor(private router: Router, public storage: StorageService, public api: ApiService) {
 
   }
 
   missionIdList: string[] = []
   ngOnInit() {
+    this.storage.getUserName().subscribe(name => {
+      this.userName = name;
+    })
     this.getMissionList();
   }
 

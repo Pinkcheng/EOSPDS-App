@@ -16,7 +16,12 @@ import { NotifyService } from '../services/notify.service';
 })
 export class Tab1Page implements OnInit {
   userId: string = '';
-  constructor(private router: Router, public storage: StorageService, public api: ApiService, public notify: NotifyService) {
+  userName: string = '';
+  constructor(
+    private router: Router,
+     public storage: StorageService,
+     public api: ApiService,
+      public notify: NotifyService,) {
 
   }
 
@@ -24,6 +29,9 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.getMissionList();
     this.notify.checkMissionCount(); //啟動本地推播
+    this.storage.getUserName().subscribe(name => {
+      this.userName = name;
+    })
   }
 
   doRefresh(event) {
