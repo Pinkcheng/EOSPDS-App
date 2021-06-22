@@ -1,9 +1,9 @@
 <ion-card>
-  <ion-item color="secondary" (click)="nextpage()">
+  <ion-item color="primary" (click)="nextpage()">
     <ion-card-header>
-      <ion-card-title class="card-title">{{missionType}}</ion-card-title>
+      <ion-card-title class="card-title secondary-font">{{missionType}}</ion-card-title>
     </ion-card-header>
-    <ion-card-content class="card-content">
+    <ion-card-content class="card-content secondary-font">
       <ion-label>
         <span class="card-label">派遣時間</span>
         {{dispatchTime | date: 'yyyy/MM/dd hh:mm:ss'}}
@@ -18,7 +18,7 @@
       </ion-label>
     </ion-card-content>
   </ion-item>
-  <ion-item color="tertiary">
+  <ion-item color="secondary">
     <app-scan-qrcode-button class="scan-button" (barcodeTextEvent)="getBarcodeId($event)"></app-scan-qrcode-button>
   </ion-item>
 </ion-card>
