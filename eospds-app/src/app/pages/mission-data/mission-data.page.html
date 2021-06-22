@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="header">任務內容</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="tertiary">
+  <ion-text class="text title" color="primary">任務類型</ion-text>
+  <ion-text class="text content"> {{missionType}}</ion-text>
+  <ion-text class="text title" color="primary">起始單位</ion-text>
+  <ion-text class="text content">{{startDepartment}}</ion-text>
+  <ion-text class="text title" color="primary">送往單位</ion-text>
+  <ion-text class="text content">{{endDepartment}}</ion-text>
+  <ion-text class="text title" color="primary">運送工具</ion-text>
+  <ion-text class="text content">{{instrument}}</ion-text>
+  <ion-text class="text title" color="primary">備註</ion-text>
+  <ion-text class="text content">{{content}}</ion-text>
+</ion-content>

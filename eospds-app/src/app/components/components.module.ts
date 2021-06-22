@@ -8,6 +8,7 @@ import { ScanQrcodeButtonComponent } from './scan-qrcode-button/scan-qrcode-butt
 import { FormsModule } from '@angular/forms';
 import { WorkStatusButtonComponent } from './work-status-button/work-status-button.component';
 import {NgxQRCodeModule} from 'ngx-qrcode2'
+import { MissionDataPage } from '../pages/mission-data/mission-data.page';
 
 
 

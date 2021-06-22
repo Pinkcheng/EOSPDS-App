@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
 import { ErrorService } from 'src/app/services/error.service';
@@ -14,7 +15,8 @@ export class MissionStartCardComponent implements OnInit {
   constructor(
     public api: ApiService,
     public storage: StorageService,
-    public err: ErrorService) { }
+    public err: ErrorService,
+    public nav: NavController) { }
 
   @Input()
   missionId: string;
@@ -70,5 +72,8 @@ export class MissionStartCardComponent implements OnInit {
         this.err.presentToast("非本系統QRcode");
       }
     }
+  }
+  nextpage() {
+    this.nav.navigateForward('mission-data', { state: { id: this.missionData.id } });
   }
 }

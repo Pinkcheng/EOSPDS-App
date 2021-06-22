@@ -18,7 +18,13 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    path: 'mission-data',
+    loadChildren: () => import('./pages/mission-data/mission-data.module').then( m => m.MissionDataPageModule),
+    canLoad: [AuthGuard]
   }
+
 ];
 @NgModule({
   imports: [

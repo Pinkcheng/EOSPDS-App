@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -8,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MissionEndCardComponent implements OnInit {
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, public nav: NavController) { }
 
   @Input()
   missionId: string;
@@ -31,5 +32,9 @@ export class MissionEndCardComponent implements OnInit {
         this.endDepartment = this.missionData.endDepartment.building.name + '-' +
           this.missionData.endDepartment.floor + '-' + this.missionData.endDepartment.name;
       });
+  }
+
+  nextpage() {
+    this.nav.navigateForward('mission-data', { state: { id: this.missionData.id } });
   }
 }

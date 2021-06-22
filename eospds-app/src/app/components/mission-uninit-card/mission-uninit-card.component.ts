@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { MissionList } from 'src/app/models';
 import { MissionData } from 'src/app/models/missionData';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,7 +18,9 @@ export class MissionUninitCardComponent implements OnInit {
   constructor(
     public api: ApiService,
     public storage: StorageService,
-    public err: ErrorService) { }
+    public err: ErrorService,
+    public route: Router,
+    public nav: NavController) { }
 
   @Input()
   missionId: string;
@@ -72,5 +76,8 @@ export class MissionUninitCardComponent implements OnInit {
         this.err.presentToast("非本系統QRcode");
       }
     }
+  }
+  nextpage() {
+    this.nav.navigateForward('mission-data', { state: { id: this.missionData.id } });
   }
 }
