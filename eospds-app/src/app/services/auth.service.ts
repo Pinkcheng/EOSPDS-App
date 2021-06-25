@@ -1,7 +1,6 @@
 import { StorageService } from './storage.service';
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppConfig } from './../share/app-config';
 import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { BehaviorSubject, from, Observable, of, Subject } from 'rxjs';
 import { Response } from '.././models';
@@ -24,7 +23,6 @@ export class AuthService {
   constructor(
     public http: HttpClient,
     public storage: StorageService,
-    public app: AppConfig,
   ) {
     this.loadToken();
   }
@@ -41,7 +39,7 @@ export class AuthService {
   }
 
   login(body: URLSearchParams): Observable<any> {
-    return this.http.post<Response>(this.app.apiUrl + '/auth/login', body.toString(), this.apiOptions).pipe(
+    return this.http.post<Response>('http://10.10.105.11:9487/auth/login', body.toString(), this.apiOptions).pipe(
       map((res: Response) => {
         if (res.status == 1) {
           const jwtHelper = new JwtHelperService();
