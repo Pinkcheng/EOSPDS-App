@@ -12,8 +12,8 @@ import { Response } from '../../models'
 })
 export class LoginPage implements OnInit {
 
-  account: string = "0975879856";
-  password: string = "123";
+  account: string = "";
+  password: string = "";
 
   constructor(
     public err: ErrorService,
