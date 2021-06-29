@@ -92,7 +92,8 @@
       "cordova-plugin-local-notification": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
