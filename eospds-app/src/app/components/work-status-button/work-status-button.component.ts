@@ -6,6 +6,7 @@ import { ErrorService } from 'src/app/services/error.service';
 import { PunchService } from 'src/app/services/punch.service';
 import { StorageService } from 'src/app/services/storage.service';
 
+
 @Component({
   selector: 'app-work-status-button',
   templateUrl: './work-status-button.component.html',
@@ -58,7 +59,7 @@ export class WorkStatusButtonComponent implements OnInit {
               if (missionCount == 0) {
                 this.punch.setWorkingStatus(false)
               } else {
-                this.err.presentToast('您還有任務尚未完成')
+                alert('您還有任務尚未完成')
               }
             });
           })
@@ -69,7 +70,8 @@ export class WorkStatusButtonComponent implements OnInit {
   }
 
   getPunchTime(): string {
-    let timeNow = new Date(new Date().getTime() + 1000 * 60 * 60 * 2).toString();
+    let timeNow = new Date(new Date().getTime()).toString();
+    console.log(timeNow)
     let punchTime = timeNow.split(' ')[4];
     return punchTime
   }

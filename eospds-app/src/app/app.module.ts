@@ -16,6 +16,7 @@ import { ShareModule } from './share/share.module';
 import { PunchService } from './services/punch.service';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
 import { NotifyService } from './services/notify.service';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { NotifyService } from './services/notify.service';
     ApiService,
     PunchService,
     NotifyService,
+    QRScanner,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenAuthHttpInterceptor,

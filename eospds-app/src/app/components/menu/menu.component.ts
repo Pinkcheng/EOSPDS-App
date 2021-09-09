@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,12 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, public nav: NavController) { }
 
   ngOnInit() { }
 
   async logout() {
+    this.router.navigateByUrl('/login',{replaceUrl:true});
     await this.authService.logout();
-    this.router.parseUrl('/login');
+    console.log('logout')
   }
 }

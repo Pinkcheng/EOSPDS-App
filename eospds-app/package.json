@@ -23,8 +23,10 @@
     "@ionic-native/barcode-scanner": "^5.32.1",
     "@ionic-native/core": "^5.32.1",
     "@ionic-native/local-notifications": "^5.33.0",
+    "@ionic-native/qr-scanner": "^5.36.0",
     "@ionic/angular": "^5.5.2",
     "@ionic/storage-angular": "^3.0.6",
+    "cordova-plugin-qrscanner": "git+https://git@github.com/danielzen/cordova-plugin-qrscanner.git",
     "ngx-qrcode2": "^9.0.0",
     "rxjs": "~6.6.0",
     "sharp": "^0.28.2",
@@ -89,7 +91,8 @@
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-qrscanner": {}
     },
     "platforms": [
       "android",

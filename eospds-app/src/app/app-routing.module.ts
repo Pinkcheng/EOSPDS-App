@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'mission-data',
     loadChildren: () => import('./pages/mission-data/mission-data.module').then( m => m.MissionDataPageModule),
     canLoad: [AuthGuard]
+  },
+  {
+    path: 'qrcode',
+    loadChildren: () => import('./pages/qrcode/qrcode.module').then( m => m.QrcodePageModule)
   }
 
 ];

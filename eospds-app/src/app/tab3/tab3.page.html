@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-button>
@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="has-header">
+<ion-content class="has-header content">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
     </ion-refresher-content>

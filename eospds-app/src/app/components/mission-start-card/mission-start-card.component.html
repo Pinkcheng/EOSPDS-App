@@ -23,6 +23,6 @@
     </ion-card-content>
   </ion-item>
   <ion-item color="secondary">
-    <app-scan-qrcode-button class="scan-button" (barcodeTextEvent)="getBarcodeId($event)"></app-scan-qrcode-button>
+    <app-scan-qrcode-button class="scan-button" [missionId]="missionId"></app-scan-qrcode-button>
   </ion-item>
 </ion-card>
